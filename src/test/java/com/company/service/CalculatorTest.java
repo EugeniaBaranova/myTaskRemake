@@ -11,8 +11,8 @@ public class CalculatorTest {
     @Test
     public void addWhenAllElementIsPositiveTest(){
 
-        int result = calculator.add(10, 10);
-        Assert.assertSame(result,20);
+        int add = calculator.add(10, 10);
+        Assert.assertSame(20,add);
     }
     @Test
     public void addWhenAllElementsIsZeroTest(){
@@ -24,7 +24,7 @@ public class CalculatorTest {
     public void addWhenFirstElementIsNegativeTest(){
 
         int add = calculator.add(-1, 1);
-        Assert.assertSame(add,0);
+        Assert.assertSame(0,add);
 
         int add1 = calculator.add(-1, 12);
         Assert.assertSame(11,add1);
@@ -33,7 +33,7 @@ public class CalculatorTest {
     public void addWhenSecondElementIsNegativeTest(){
 
         int add = calculator.add(1, -1);
-        Assert.assertSame(add,0);
+        Assert.assertSame(0,add);
 
         int add1 = calculator.add(1, -12);
         Assert.assertSame(-11,add1);
