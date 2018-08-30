@@ -26,9 +26,7 @@ public class CalculatorImpl implements Calculator {
     @Override
     public double exponentiation(int base, int exponent) {
         if(exponent == 0 && base == 0){
-            System.out.println("0^0 - indeterminate form");
-            //!!!
-            return 0;
+            throw new IllegalArgumentException("0^0 - indeterminate form");
         }
         if(exponent == 0 && base != 0){
             return 1;

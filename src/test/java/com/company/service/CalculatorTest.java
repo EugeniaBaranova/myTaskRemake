@@ -1,5 +1,6 @@
 package com.company.service;
 
+import com.sun.org.apache.xpath.internal.operations.String;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -129,9 +130,13 @@ public class CalculatorTest {
 
     }
     @Test
-    public void divideWhenSecondElementsIsZeroTest() throws  ArithmeticException{
+    public void divideWhenSecondElementsIsZeroTest() {
 
-        calculator.divide(1,0);
+        double divide = calculator.divide(1,0);
+        Assert.assertEquals(Double.POSITIVE_INFINITY, divide,0.000);
+
+        double divide1 = calculator.divide(-1,0);
+        Assert.assertEquals(Double.NEGATIVE_INFINITY, divide1,0.000);
 
     }
 
@@ -222,13 +227,11 @@ public class CalculatorTest {
         Assert.assertEquals(0.25,exponentiation,0.00);
 
     }
-    //!!!!
-    @Test
-    public void exponentiationWhenAllElementIsZeroTest() {
 
-        double exponentiation = calculator.exponentiation(0,0);
-        Assert.assertEquals(0,exponentiation,0);
+    @Test (expected = IllegalArgumentException.class)
+    public void exponentiationWhenAllElementIsZeroTest(){
 
+        calculator.exponentiation(0,0);
     }
 
 

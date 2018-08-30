@@ -8,8 +8,8 @@ public interface CustomerService {
 
     void printListOfCustomers(Customer[] customers);
 
-    void sortBySurname(Customer[] customers);
+    Customer[] sortBySurname(Customer[] customers);
 
-    void cardOfInterval(Customer[] customers, int from, int to);
+    Customer[] customersWhoHaveCardNumberInTheRangeFromTo(Customer[] customers, int from, int to) throws Exception;
 
 }

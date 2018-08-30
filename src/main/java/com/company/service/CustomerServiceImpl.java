@@ -2,6 +2,8 @@ package com.company.service;
 
 import com.company.entity.Customer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
@@ -42,9 +44,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void sortBySurname(Customer[] customers) {
+    public Customer[] sortBySurname(Customer[] customers) {
         // Bubble Sort
-        for (int i = 0; i < customers.length-2 ; i++) {
+        for (int i = 0; i < customers.length-1 ; i++) {
             for (int j = customers.length-1; j > i ; j--) {
                 if (customers[i] != null && customers[j] != null) {
                     if (customers[i].getSurname() != null && customers[j].getSurname() != null) {
@@ -53,25 +55,43 @@ public class CustomerServiceImpl implements CustomerService {
                             customers[i] = customers[j];
                             customers[j] = transitCustomer;
                         }
+                    } else {
+                        System.out.println("This array has customer with null Surname. Fill and try again.");
+                        return customers;
                     }
+                } else {
+                    System.out.println("This array of customers has null customer. Fill array and try again.");
+                    return customers;
                 }
             }
         }
-        System.out.println("List of customers sorted by surname");
-        printListOfCustomers(customers);
+        /*System.out.println("List of customers sorted by surname");
+        printListOfCustomers(customers);*/
+        return customers;
     }
 
     @Override
-    public void cardOfInterval(Customer[] customers, int from, int to) {
+    public Customer[] customersWhoHaveCardNumberInTheRangeFromTo(Customer[] customers, int from, int to) throws Exception {
 
-        System.out.println("List of customer's cards (interval from " + from + " to " + to + ")");
+        //System.out.println("List of customer's cards (interval from " + from + " to " + to + ")");
+
+        List<Customer> customersInTheRangeList = new ArrayList<>();
         for (Customer customer: customers){
             if(customer != null) {
                 if(customer.getNoOfCard() > from && customer.getNoOfCard() < to){
-                    System.out.println(customer);
+                    //System.out.println(customer);
+                    customersInTheRangeList.add(customer);
                 }
             }
         }
+        if(customersInTheRangeList.isEmpty()) {
+            throw new Exception("Nothing has found. There are no customers with such card numbers.");
+        }
+        Customer[] customersInTheRangeArray = new Customer[customersInTheRangeList.size()];
+        for (int i = 0; i < customersInTheRangeList.size(); i++){
+            customersInTheRangeArray[i] = customersInTheRangeList.get(i);
+        }
+        return customersInTheRangeArray;
     }
 
     private String nextLineByScanner() {

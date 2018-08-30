@@ -18,8 +18,14 @@ public class Main {
 
         customerService.fillCustomer(customers);
 
-        customerService.sortBySurname(customers);
-        customerService.cardOfInterval(customers, 3500, 3600);
+        System.out.println("List of customers sorted by surname");
+        customerService.printListOfCustomers(customerService.sortBySurname(customers));
+
+        try {
+            customerService.customersWhoHaveCardNumberInTheRangeFromTo(customers, 3500, 3600);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
